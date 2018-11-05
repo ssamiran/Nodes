@@ -26,6 +26,7 @@ protected:
   void readSensor(struct valve);
   bool isDone();
   bool reset();
+  void tick();
 };
 
 #endif
