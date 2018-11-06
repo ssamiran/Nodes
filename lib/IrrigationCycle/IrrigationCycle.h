@@ -14,16 +14,19 @@
 #else
 #include <Arduino.h>
 #endif
-#include <valvereport.h>
+#include "valvereport.h"
 
 
 class IrrigationCycle{
 public:
-  void startIrrigation(struct valvereport, int startTime, float waterAmount);
+  bool isIrrigating;
+  
+
+  bool startIrrigation(struct valvereport ValveReport, int startTime, float waterAmount);
 
 protected:
   void stopIrrigation(float waterAmount);
-  void readSensor(struct valve);
+  void readSensor(struct valvereport *Valve);
   bool isDone();
   bool reset();
   void tick();

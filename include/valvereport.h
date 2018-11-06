@@ -15,13 +15,15 @@
 #include <Arduino.h>
 #endif
 
-struct{
+struct valvereport{
   int flowrate;
-  float amoountUsed;
+  float amountUsed;
+  double startTime;
   double elapsedTime;
   int waterPressure;
+  bool irrigated;
 
-}valvereport;
+};
 
 
 #endif

@@ -1,13 +1,13 @@
 /*!
-   \file "Valve.h"
+   \file "IrrigationCycle.h"
    \brief "Execute irrigationcycle and store sensor data"
    \author "Spandan"
-   \date "02"/"Nov"/"2018"
+   \date "06"/"Nov"/"2018"
 */
 
 
-#ifndef Valve_h
-#define Valve_h
+#ifndef flowratesensor_h
+#define flowratesensor_h
 
 #if ARDUINO < 100
 #include <WProgram.h>
@@ -15,16 +15,12 @@
 #include <Arduino.h>
 #endif
 
-
-
-class Valve{
+class FlowRateSensor{
 public:
-  bool isOpen;
-
-  void open();
-  void close();
-  void reset();
-
+    float read();
+    float convertToPascal();
 };
+
+
 
 #endif
