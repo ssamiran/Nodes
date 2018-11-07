@@ -1,13 +1,13 @@
 /*!
-   \file "flowratesensor.h"
+   \file "rtc.h"
    \brief "Execute irrigationcycle and store sensor data"
    \author "Spandan"
    \date "06"/"Nov"/"2018"
 */
 
 
-#ifndef flowratesensor_h
-#define flowratesensor_h
+#ifndef rtc_h
+#define rtc_h
 
 #if ARDUINO < 100
 #include <WProgram.h>
@@ -15,12 +15,11 @@
 #include <Arduino.h>
 #endif
 
-class FlowRateSensor{
+class rtc{
 public:
-    float read();
-    float convertToPascal();
+  char getTime();
+  void setTime();
+  char getElapsedTime();
 };
-
-
 
 #endif

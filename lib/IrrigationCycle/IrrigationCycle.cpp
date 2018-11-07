@@ -10,12 +10,15 @@
 #include "Valve.h"
 #include "pressuresensor.h"
 #include "flowratesensor.h"
+#include "rtc.h"
 
 Valve valve;
+flowratesensor FlowRate
+pressuresensor PressureSensor
 #define FLOWRATE_SENSOR 9
 #define PRESSURE_SENSOR 10
 
-bool IrrigationCycle::startIrrigation(struct valvereport ValveReport , int startTime, float expectedWaterUse){
+bool IrrigationCycle::startIrrigation(struct valvereport ValveReport , int startTime, float expectedWaterUse, int taskCode){
 
       bool return_value = false;
 
@@ -23,6 +26,9 @@ bool IrrigationCycle::startIrrigation(struct valvereport ValveReport , int start
           valve.open();
           valve.isOpen = true;
           isIrrigating = true;
+          ValveReport.taskCode = taskCode;
+          ValveReport.startTime = startTime;
+          ValveReport.irrigated = false;
           do {
                 ValveReport.startTime = startTime;
                 readSensor(&ValveReport);
@@ -30,6 +36,7 @@ bool IrrigationCycle::startIrrigation(struct valvereport ValveReport , int start
           valve.close();
           valve.isOpen = false;
           isIrrigating = false;
+          ValveReport.irrigated = true;
           // update irrigationschedule array
           // task_code -> irrigated:true
 
@@ -51,17 +58,15 @@ void IrrigationCycle::stopIrrigation(float waterAmount){
 }
 
 void IrrigationCycle::readSensor(struct valvereport *Valve){
-
+      Valve.flowrate = FlowRate.read();
+      Valve.amountUsed = FlowRate.convertToAmountUsed();
+      Valve.waterPressure = PressureSensor.read();
 }
 
-bool IrrigationCycle::isDone(){
+bool IrrigationCycle::isDone(int taskCode){
   return true;
 }
 
 bool IrrigationCycle::reset(){
   return true;
-}
-
-void IrrigationCycle::tick(){
-
 }

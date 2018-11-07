@@ -2,7 +2,7 @@
    \file "IrrigationCycle.h"
    \brief "Execute irrigationcycle and store sensor data"
    \author "Spandan"
-   \date "02"/"Nov"/"2018"
+   \date "05"/"Nov"/"2018"
 */
 
 
@@ -20,16 +20,15 @@
 class IrrigationCycle{
 public:
   bool isIrrigating;
-  
 
-  bool startIrrigation(struct valvereport ValveReport, int startTime, float waterAmount);
+
+  bool startIrrigation(struct valvereport ValveReport, int startTime, float waterAmount, int taskCode);
 
 protected:
   void stopIrrigation(float waterAmount);
   void readSensor(struct valvereport *Valve);
-  bool isDone();
+  bool isDone(int taskCode);
   bool reset();
-  void tick();
 };
 
 #endif

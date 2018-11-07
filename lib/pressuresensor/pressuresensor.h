@@ -1,5 +1,5 @@
 /*!
-   \file "IrrigationCycle.h"
+   \file "pressuresensor.h"
    \brief "Execute irrigationcycle and store sensor data"
    \author "Spandan"
    \date "06"/"Nov"/"2018"
@@ -16,9 +16,10 @@
 #endif
 
 class PressureSensor{
-public:
-    float read();
-    float convertToAmountUsed();
+    public:
+        float read();
+    protected:
+        float convertToAmountUsed();
 };
 
 

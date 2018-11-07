@@ -21,6 +21,7 @@ struct valvereport{
   double startTime;
   double elapsedTime;
   int waterPressure;
+  int taskCode;
   bool irrigated;
 
 };
